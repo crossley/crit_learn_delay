@@ -1,0 +1,417 @@
+\documentclass[12pt]{article}
+% Language and font
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+% Bibliography with APA style
+\usepackage[style=apa,sortcites=true,sorting=nyt,backend=biber]{biblatex}
+\DeclareLanguageMapping{american}{american-apa}
+\addbibresource{sample.bib}
+% Layout and formatting
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\setstretch{1.0}
+\usepackage{parskip} % disables indentation and adds vertical space between paragraphs
+\setlength{\parindent}{0pt}
+% Math and symbols
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{gensymb}
+% Graphics and floats
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+% Optional: nicer font
+\usepackage{lmodern}
+% Turn off section numbers
+\setcounter{secnumdepth}{0}
+
+\title{Response to Reviews: \\ \vspace{1cm}
+    Criterial Learning and Feedback Delay: Insights from
+Computational Models and Behavioral Experiments}
+\author{
+    Matthew J. Crossley, 
+    Benjamin O. Pelzer,
+    F. Gregory Ashby
+}
+\date{}
+
+\begin{document}
+
+\maketitle 
+
+\section{Reviewer 1}
+
+\subsection{Reviewer comment}
+The research question of the study is to investigate the
+effect of delay in criterion learning in category learning.
+Experiment 1 shows that in a continuous criterion learning
+task with known relevant dimension delaying the feedback but
+not increasing the ITI decreases performance. In other
+words, delaying feedback makes it more difficult to learn
+the position of a continuous criterion. Experiment 2 uses
+many binary dimensions in the category learning task and
+participants' goal is to learn the binary dimension. In this
+task, delaying feedback does not decrease performance. The
+researchers simulate the performance of three different
+models and show that a model that assumes the criterion is
+maintained in working memory with information drifting
+across time cannot predict the observed effect. Two models
+that make different assumption can predict the observed
+pattern.
+
+\subsection{Author response}
+...
+
+\subsection{Reviewer comment}
+I am no expert in category learning, so cannot adequately
+judge the novelty of the observed results. Given this
+caveat, I really enjoyed reading the manuscript and felt it
+made a convincing argument using a rigorous and
+state-of-the-art methodology. Using parameter-space
+partitioning is an excellent and sadly underutilised way of
+comparing models. It goes much beyond the typical approach
+of comparing models in terms of their model fit and instead
+allows deriving qualitative differences between the
+candidate models. In addition, the two experiments are well
+designed and executed and provide the necessary empirical
+basis on which the models are compared. The paper is also
+overall clearly written. Taken together, I highly recommend
+this paper to be published after addressing a number of
+mostly minor concerns detailed below. My main issues with
+the current version relate to the presentation of the models
+and modelling results and whether the space of possible
+models is sufficiently explored.
+
+\subsection{Author response}
+...
+
+\subsection{Reviewer comment}
+1. Exploration of model space: When reading the description
+of the models it was not entirely clear to me whether the
+three presented models explore the space of possible models
+to a sufficient degree or whether there might be some models
+missing from consideration that could change the overall
+message. For example, from a theoretical point of view the
+main difference between the time-dependent drift model and
+the delay-sensitive learning model is that for the latter
+"the criterion remains stable over time and does not drift".
+However, when looking at the model descriptions more aspects
+seem to differ than solely the presence of drift, namely the
+presence of the feedback delay in the updating rule (Eq. 2
+vs. 6). Is the change in the updating rule necessary for the
+models to just differ in the noise in the criterion or is it
+part of it? I am not sure if I just do not understand the
+difference or if a hybrid model with drift and feedback
+delay in the updating rule is possible. Likewise, are any of
+the assumption in the reinforcement-learning model, which
+seems to differ quite a bit from the previous models,
+somewhat arbitrary or are these always the only possible
+choices?
+
+I am not asking for an extensive exploration of the model
+space using additional simulations, but some descriptions of
+the extent to which the presented models explore the
+possible model space or if there are other possible models
+that could potentially lead to different results is needed.
+
+\subsection{Author response}
+...
+
+\subsubsection{Reviewer comment}
+2. Simulation results figures: There were some aspects of
+the results figures for the simulation that I found
+difficult to understand:
+
+(a) Even after reading the full paper and thinking about it
+for a while, I do not understand what panels B are supposed
+to show. Does this only show the subset of the parameter
+space in which one of the two relevant patterns was
+observed? If not, shouldn't there be data points everywhere?
+
+(b) I do not understand why in Figure 1, for example, panel
+C shows some cases in which the predicted qualitative
+pattern is either "control impaired" or "other", but there
+is no corresponding bar in panel A.
+
+(c) The bars in Figure 2A are smaller than in Figures 1A and
+3A. Why?
+
+\subsection{Author response}
+...
+
+\subsubsection{Reviewer comment}
+3. Calling the simulation Experiment 1: I found it extremely
+confusing that the simulation using parameter-space
+partitioning was called "Experiment 1". If I read
+"Experiment" I expect to see some empirical data obtained
+from participants and not solely a simulation. I suggest
+renaming this section to something clearer. For example
+"Simulation Study" or "Parameter-Space Partitioning Across
+Models".
+
+\subsection{Author response}
+...
+
+\subsubsection{Reviewer comment}
+4. Outliers in Exp. 2:
+
+- While I think the argument for removing outliers in Exp. 2
+is fine, the actual criterion defining an outlier is not
+actually given (which feels a bit ironic in a paper about
+criteria).
+
+- How do the results look with these outliers included? Does
+the difference between condition vanish? Adding a footnote
+or so should be enough.
+
+- The fact that some participants did not even learn a
+single criterion feels very surprising to me. Is this common
+in such experiments? Please add a sentence embedding this
+finding within your general experience running such
+experiments.
+
+\subsection{Author response}
+...
+
+\subsubsection{Reviewer comment}
+Minor points:
+
+- Does Eq. 13 show results for trial n or n + 1? The text
+and equation are inconsistent.
+
+- The description regarding the randomisation of Experiment
+2 on page 12 (paragraph before "Procedure") seems to be
+inconsistent with Figure 4. Is the dimension picked at
+random for each trial or always the same for certain problem
+numbers (as implied by Figure 4)?
+
+- In figure 4, the top says Problems "1 thru 13", but only
+shows 7 problems.
+
+\subsection{Author response}
+...
+
+\section{Reviewer 2}
+
+\subsubsection{Reviewer comment}
+Your action editor asked me if I could provide a review, as
+they have only been able to secure one reviewer after a
+considerable delay. Although I am editor in chief for the
+journal, I am acting in the role of a reviewer in this case.
+The action editor retains full authority to determine the
+decision outcome for this manuscript.
+
+\subsection{Author response}
+...
+
+\subsubsection{Reviewer comment}
+This manuscript reports a sophisticated approach to an
+important problem. I especially like the use of mathematical
+models.
+
+\subsection{Author response}
+...
+
+\subsubsection{Reviewer comment}
+I was concerned that the models seem to have multiple
+varying features. It might be more useful to isolate
+specific processes while holding other model elements
+constant. Based on the introduction, I was not clear on the
+theoretical motivation for comparing the time-dependent
+drift and delay sensitive learning models, as the latter did
+not seem to be just a version of the former but with delay
+as a relevant factor. Some additional justification and/or
+adjustments to the tested set of models is needed.
+
+\subsection{Author response}
+...
+
+\subsubsection{Reviewer comment}
+Despite these concerns about which models are the most
+relevant to compare, I was impressed by the simulation
+strategy and the focus on finding “signature” predictions
+that distinguish different pairs of models.
+
+\subsection{Author response}
+...
+
+\subsubsection{Reviewer comment}
+I think it makes more sense to have a prediction simulation
+section and Experiments 1 and 2 rather than to consider the
+simulation the first experiment.
+
+\subsection{Author response}
+...
+
+\subsubsection{Reviewer comment}
+The data in Figure 6 can likely be fit much more closely by
+an ExGaussian distribution than either the 1 or 2 component
+Gaussian mixtures that are shown.
+
+\subsection{Author response}
+...
+
+\subsubsection{Reviewer comment}
+Replication the criterial learning results from the
+currently-labeled Experiment 2 seems like a good idea given
+the fairly low sample sizes per condition.
+
+\subsection{Author response}
+...
+
+\subsubsection{Reviewer comment}
+Did stimuli remain on the screen across the feedback delay?
+I don’t think so. If not, what happens if the stimulus
+reappears at the time of feedback? I could imagine this
+would eliminate or dramatically reduce the negative effect
+of feedback delay. If so, is that consistent with the
+conclusions? That is, would the models that predict a
+deleterious effect of feedback delay also predict that it
+should be eliminated with “reminder” stimuli at the time of
+feedback?
+
+\subsection{Author response}
+...
+
+\subsubsection{Reviewer comment}
+For the currently-labeled Experiment 3, reporting
+fail-to-reject results for t-tests is not a valid method for
+establishing that feedback delay has no effect. This is
+especially a concern given the low participant count per
+condition and the fact that empirical effects go in the
+“right” direction (lower performance for delayed feedback).
+A different inferential approach is needed, and one
+possibility is reporting confidence intervals over effect
+size. Your conclusions rely on demonstrating that you can
+rule out meaningfully large effects (i.e., only negligibly
+small effect sizes are included in the confidence
+intervals). I suspect that the intervals will be wide and
+include a range of fairly big effects, of the same magnitude
+as the effects reported in Experiment 1. As such, this
+experiment does not establish that the effects of feedback
+delay are specific to a criterion learning task.
+
+\subsection{Author response}
+...
+
+\subsubsection{Reviewer comment}
+I recommend running a bigger replication study that combines
+both tasks to demonstrate the claimed interaction (feedback
+delay impairs performance only for the criterion learning
+task). The replication study should be preregistered with a
+sample size justification based on the interaction effect
+defined by the across-experiment comparison in the current
+data. Adding a “stimulus reminder at feedback” condition to
+this new study might be helpful in clarifying the mechanisms
+producing the delay effect.
+
+Signed,
+Jeff Starns
+
+\subsection{Author response}
+...
+
+\section*{Action Editor}
+
+\subsubsection{Reviewer comment}
+The topic is made very clear in the first paragraph and
+notes the need for investigating how criterions are learned
+in decision models.
+
+\subsection{Author response}
+...
+
+\subsubsection{Reviewer comment}
+The final paragraph of the introduction summarizes the
+experiments. This seems more appropriate in the abstract,
+given that no information about the experiments are
+presented in the abstract.
+
+\subsection{Author response}
+...
+
+\subsubsection{Reviewer comment}
+Equation 1 needs some explanation, as this implies that the
+decision Rn is made immediately on stimulus presentation. In
+other words, Rn is not an outcome of some time-extended
+cognitive process. Am I misunderstanding equation 1?
+
+\subsection{Author response}
+...
+
+\subsubsection{Reviewer comment}
+What was the reason behind the choice to have equation 2
+only be sensitive to negative feedback? How is "optimal"
+defined in the current case, given that response time does
+not factor in the update rule?
+
+\subsection{Author response}
+...
+
+\subsubsection{Reviewer comment}
+The use of parameter space partitioning is sensible given
+the many differences among the three models. However, PSP
+operates on non-stochastic models. In addition, the way you
+have approached PSP is not how the original PSP is
+implemented (i.e., using MCMC). This should be mentioned
+explicitly to avoid confusion.
+
+\subsection{Author response}
+...
+
+\subsubsection{Reviewer comment}
+The three-dimensional plots in figures 1B, 2B, and 3B do not
+come out right on 2D. You could improve these by having 2D
+projections on the planes. Better still, three boxplots
+would be more appropriate as there is no additional
+information by using 3D plots.
+
+\subsection{Author response}
+...
+
+\subsubsection{Reviewer comment}
+Although not a focus in this manuscript, I wondered whether
+the models are able to account for finer-grained data
+patterns such as complete RT distributions and
+speed-accuracy tradeoff functions.
+
+\subsection{Author response}
+...
+
+\subsubsection{Reviewer comment}
+The experiments are numbered 2 and 3, instead of 1 and 2.
+The models were following the methods of experiment 1, which
+is missing. Experiment 1 is also mentioned in the discussion
+separately with experiment 2. It looks like experiment 1 has
+been deleted from this manuscript, but the model simulations
+and discussion still refer to it.
+
+\subsection{Author response}
+...
+
+\subsubsection{Reviewer comment}
+In figure 6, it is clear that the participants form two
+subcohorts. However, the use of a Gaussian seems odd given
+that there can not be any negative values for
+trials-to-criterion. Given that the authors model this
+frequency histogram to exclude participants, more
+appropriate distributions, such as Poisson should be used.
+
+\subsection{Author response}
+...
+
+\subsubsection{Reviewer comment}
+Given the experimental results, what is the added benefit of
+the three models? Experiment 2 is the critical experiment
+showing that 3.5-0.5 leads to more trials-to-criterion than
+0.5-3.5 or 0.5-0.5. The models do not provide any detailed
+understanding of mechanisms and they are not fitted to
+actual data. The general message from the experiments is
+that any updating rule should be sensitive to feedback
+delay. The models do not go beyond this.
+
+\subsection{Author response}
+...
+
+\end{document}

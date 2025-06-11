@@ -1,4 +1,3 @@
-import csv
 import time
 import os
 import sys
@@ -10,7 +9,6 @@ import pandas as pd
 from scipy.optimize import minimize, brute, fmin, differential_evolution
 import scipy.stats as sps
 import multiprocessing as mp
-import pandas as pd
 from itertools import product
 import matplotlib.pyplot as plt
 from matplotlib import colors, cm
