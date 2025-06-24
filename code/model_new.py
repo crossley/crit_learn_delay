@@ -155,6 +155,8 @@ def simulate_class_II(params, args):
     num_consecutive_correct = 0
     t2c = 0
 
+    xc = np.random.choice((stim.min(), stim.max()))
+
     for x in stim:
 
         # Determine true category label
@@ -171,7 +173,7 @@ def simulate_class_II(params, args):
 
         # the criterion and the stimulus may drift over the feedback delay
         x += eta_perceptual_drift * t_delay * np.random.normal(0, 1)
-        xc += eta_criterion_drift * t_delay * crit_drift * np.random.normal(0, 1)
+        xc += eta_criterion_drift * t_delay * np.random.normal(0, 1)
 
         # The current criterion is updated following errors and the strength 
         # of the update may be modulated by feedback delay
@@ -426,23 +428,20 @@ def psp_class_II():
 
                         iteration += 1
 
-# TODO: alter to fits class II. 
 def psp_class_II_multi():
 
     # Generate values for each parameter
-    sigma_perceptual_noise = np.arange(1, 10, 1)
-    alpha_actor = np.arange(.01, .1, .01)
-    alpha_critic = np.arange(.01, 1, .1)
+    alpha = np.arange(.01, .1, .01)
     eta_perceptual_drift = np.arange(0, 1, 0.1)
+    eta_criterion_drift = np.arange(0, 1, 0.1)
     delay_sensitive_update = np.array([True, False])
     problem = np.arange(1, 100, 1)
 
     # Generate a list of tuples where each tuple is a combination of parameters.
     # The list will contain all possible combinations of parameters.
-    paramlist = list(itertools.product(sigma_perceptual_noise,
-                                       alpha_actor,
-                                       alpha_critic,
+    paramlist = list(itertools.product(alpha,
                                        eta_perceptual_drift,
+                                       eta_criterion_drift,
                                        delay_sensitive_update,
                                        problem))
 
@@ -455,17 +454,15 @@ def psp_class_II_multi():
 
     pd.DataFrame(res).to_csv("../output/param_record_class_II_multi.csv", index=False)
 
-# TODO: alter to fits class II. 
 def psp_func_class_II_multi(params):
 
-    sigma_perceptual_noise = params[0]
-    alpha_actor = params[1]
-    alpha_critic = params[2]
-    eta_perceptual_drift = params[3]
-    delay_sensitive_update = params[4]
-    problem = params[5]
+    alpha = params[0]
+    eta_perceptual_drift = params[1]
+    eta_criterion_drift = params[2]
+    delay_sensitive_update = params[3]
+    problem = params[4]
 
-    print(sigma_perceptual_noise, alpha_actor, alpha_critic, eta_perceptual_drift, delay_sensitive_update, problem)
+    print(alpha, eta_perceptual_drift, eta_criterion_drift, delay_sensitive_update, problem)
 
     bin_width = 14
     lb1 = 50-bin_width/2
@@ -485,21 +482,22 @@ def psp_func_class_II_multi(params):
     args_liti = (xc_true, 0.5, 3.0, stim)
     args_siti = (xc_true, 0.5, 0.5, stim)
 
-    t2c_delay = simulate_class_I(params, args_delay)
-    t2c_liti = simulate_class_I(params, args_liti)
-    t2c_siti = simulate_class_I(params, args_siti)
+    t2c_delay = simulate_class_II(params, args_delay)
+    t2c_liti = simulate_class_II(params, args_liti)
+    t2c_siti = simulate_class_II(params, args_siti)
 
     res_dict = {
-        'sigma_perceptual_noise': sigma_perceptual_noise,
-        'alpha_actor': alpha_actor,
-        'alpha_critic': alpha_critic,
+        'alpha': alpha,
         'eta_perceptual_drift': eta_perceptual_drift,
+        'eta_criterion_drift': eta_perceptual_drift,
         'delay_sensitive_update': delay_sensitive_update,
         'problem': problem,
         't2c_delay': t2c_delay,
         't2c_liti': t2c_liti,
         't2c_siti': t2c_siti
     }
+
+    return res_dict
 
 if __name__ == "__main__":
 
