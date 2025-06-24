@@ -366,12 +366,9 @@ def psp_func(params):
     xc_init = np.random.uniform(0, stim_range, 1)
     xc_true = stim_range / 2.0
 
-    t2c_delay = simulate(xc_init, xc_true, alpha, eta_stim, eta_crit, 3.0, 0.5,
-                         stim)
-    t2c_liti = simulate(xc_init, xc_true, alpha, eta_stim, eta_crit, 0.5, 3.0,
-                        stim)
-    t2c_siti = simulate(xc_init, xc_true, alpha, eta_stim, eta_crit, 0.5, 0.5,
-                        stim)
+    t2c_delay = simulate(xc_init, xc_true, alpha, eta_stim, eta_crit, 3.0, 0.5, stim)
+    t2c_liti = simulate(xc_init, xc_true, alpha, eta_stim, eta_crit, 0.5, 3.0, stim)
+    t2c_siti = simulate(xc_init, xc_true, alpha, eta_stim, eta_crit, 0.5, 0.5, stim)
 
     res_dict = {
         'alpha': [alpha],

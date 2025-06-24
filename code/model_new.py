@@ -191,6 +191,82 @@ def simulate_class_II(params, args):
 
     return t2c
 
+
+def psp_class_I_multi():
+
+    # Generate values for each parameter
+    sigma_perceptual_noise = np.arange(1, 10, 1)
+    alpha_actor = np.arange(.01, .1, .01)
+    alpha_critic = np.arange(.01, 1, .1)
+    eta_perceptual_drift = np.arange(0, 1, 0.1)
+    delay_sensitive_update = np.array([True, False])
+    problem = np.arange(1, 100, 1)
+
+    # Generate a list of tuples where each tuple is a combination of parameters.
+    # The list will contain all possible combinations of parameters.
+    paramlist = list(itertools.product(sigma_perceptual_noise,
+                                       alpha_actor,
+                                       alpha_critic,
+                                       eta_perceptual_drift,
+                                       delay_sensitive_update,
+                                       problem))
+
+    # Generate processes equal to the number of cores
+    p = mp.cpu_count()
+    pool = mp.Pool(processes=p)
+
+    # Distribute the parameter sets evenly across the cores
+    res = pool.map(psp_func_class_I_multi, paramlist)
+
+    pd.DataFrame(res).to_csv("../output/param_record_class_I_multi.csv", index=False)
+
+def psp_func_class_I_multi(params):
+
+    sigma_perceptual_noise = params[0]
+    alpha_actor = params[1]
+    alpha_critic = params[2]
+    eta_perceptual_drift = params[3]
+    delay_sensitive_update = params[4]
+    problem = params[5]
+
+    print(sigma_perceptual_noise, alpha_actor, alpha_critic, eta_perceptual_drift, delay_sensitive_update, problem)
+
+    bin_width = 14
+    lb1 = 50-bin_width/2
+    ub2 = 50+bin_width/2
+    xc_true = np.random.uniform(lb1, ub2, 1)[0]
+    ub1 = xc_true - 0.1 * bin_width
+    lb2 = xc_true + 0.1 * bin_width
+
+    num_stim_per_problem = 200
+
+    stim_lower = np.random.uniform(lb1, ub1, num_stim_per_problem//2)
+    stim_upper = np.random.uniform(lb2, ub2, num_stim_per_problem//2)
+    stim = np.concatenate((stim_lower, stim_upper))
+    stim = np.random.permutation(stim)
+
+    args_delay = (xc_true, 3.0, 0.5, stim)
+    args_liti = (xc_true, 0.5, 3.0, stim)
+    args_siti = (xc_true, 0.5, 0.5, stim)
+
+    t2c_delay = simulate_class_I(params, args_delay)
+    t2c_liti = simulate_class_I(params, args_liti)
+    t2c_siti = simulate_class_I(params, args_siti)
+
+    res_dict = {
+        'sigma_perceptual_noise': sigma_perceptual_noise,
+        'alpha_actor': alpha_actor,
+        'alpha_critic': alpha_critic,
+        'eta_perceptual_drift': eta_perceptual_drift,
+        'delay_sensitive_update': delay_sensitive_update,
+        'problem': problem,
+        't2c_delay': t2c_delay,
+        't2c_liti': t2c_liti,
+        't2c_siti': t2c_siti
+    }
+
+    return res_dict
+
 def psp_class_I():
 
     # Simulate 3 conditions: t_delay, Long ITI, Short ITI
@@ -214,14 +290,7 @@ def psp_class_I():
         't2c_siti': []
     }
 
-    total_iterations = (
-        len(sigma_perceptual_noise)
-        * len(alpha_actor)
-        * len(alpha_critic)
-        * len(eta_perceptual_drift)
-        * len(delay_sensitive_update)
-        * num_problems
-        )
+    total_iterations = len(sigma_perceptual_noise) * len(alpha_actor) * len(alpha_critic) * len(eta_perceptual_drift) * len(delay_sensitive_update) * num_problems
 
     iteration = 1
 
@@ -273,7 +342,7 @@ def psp_class_I():
                             param_record['t2c_liti'].append(np.mean(record_liti) / max_t2c)
                             param_record['t2c_siti'].append(np.mean(record_siti) / max_t2c)
 
-                            print(100 * iteration / total_iterations, problem, w, c, a, t2c_delay, t2c_liti, t2c_siti)
+                            print("psp class I: ", 100 * iteration / total_iterations, problem, w, c, a, t2c_delay, t2c_liti, t2c_siti)
 
                             pd.DataFrame(param_record).to_csv("../output/param_record_class_I.csv", index=False)
 
@@ -301,13 +370,7 @@ def psp_class_II():
         't2c_siti': []
     }
 
-    total_iterations = (
-        * len(alpha)
-        * len(eta_perceptual_drift)
-        * len(eta_criterion_drift)
-        * len(delay_sensitive_update)
-        * num_problems
-        )
+    total_iterations = len(alpha) * len(eta_perceptual_drift) * len(eta_criterion_drift) * len(delay_sensitive_update) * num_problems
 
     iteration = 1
 
@@ -357,14 +420,91 @@ def psp_class_II():
                         param_record['t2c_liti'].append(np.mean(record_liti) / max_t2c)
                         param_record['t2c_siti'].append(np.mean(record_siti) / max_t2c)
 
-                        print(100 * iteration / total_iterations, problem, w, c, a, t2c_delay, t2c_liti, t2c_siti)
+                        print("psp class II: ", 100 * iteration / total_iterations, problem, w, c, a, t2c_delay, t2c_liti, t2c_siti)
 
                         pd.DataFrame(param_record).to_csv("../output/param_record_class_II.csv", index=False)
 
                         iteration += 1
 
+# TODO: alter to fits class II. 
+def psp_class_II_multi():
+
+    # Generate values for each parameter
+    sigma_perceptual_noise = np.arange(1, 10, 1)
+    alpha_actor = np.arange(.01, .1, .01)
+    alpha_critic = np.arange(.01, 1, .1)
+    eta_perceptual_drift = np.arange(0, 1, 0.1)
+    delay_sensitive_update = np.array([True, False])
+    problem = np.arange(1, 100, 1)
+
+    # Generate a list of tuples where each tuple is a combination of parameters.
+    # The list will contain all possible combinations of parameters.
+    paramlist = list(itertools.product(sigma_perceptual_noise,
+                                       alpha_actor,
+                                       alpha_critic,
+                                       eta_perceptual_drift,
+                                       delay_sensitive_update,
+                                       problem))
+
+    # Generate processes equal to the number of cores
+    p = mp.cpu_count()
+    pool = mp.Pool(processes=p)
+
+    # Distribute the parameter sets evenly across the cores
+    res = pool.map(psp_func_class_II_multi, paramlist)
+
+    pd.DataFrame(res).to_csv("../output/param_record_class_II_multi.csv", index=False)
+
+# TODO: alter to fits class II. 
+def psp_func_class_II_multi(params):
+
+    sigma_perceptual_noise = params[0]
+    alpha_actor = params[1]
+    alpha_critic = params[2]
+    eta_perceptual_drift = params[3]
+    delay_sensitive_update = params[4]
+    problem = params[5]
+
+    print(sigma_perceptual_noise, alpha_actor, alpha_critic, eta_perceptual_drift, delay_sensitive_update, problem)
+
+    bin_width = 14
+    lb1 = 50-bin_width/2
+    ub2 = 50+bin_width/2
+    xc_true = np.random.uniform(lb1, ub2, 1)[0]
+    ub1 = xc_true - 0.1 * bin_width
+    lb2 = xc_true + 0.1 * bin_width
+
+    num_stim_per_problem = 200
+
+    stim_lower = np.random.uniform(lb1, ub1, num_stim_per_problem//2)
+    stim_upper = np.random.uniform(lb2, ub2, num_stim_per_problem//2)
+    stim = np.concatenate((stim_lower, stim_upper))
+    stim = np.random.permutation(stim)
+
+    args_delay = (xc_true, 3.0, 0.5, stim)
+    args_liti = (xc_true, 0.5, 3.0, stim)
+    args_siti = (xc_true, 0.5, 0.5, stim)
+
+    t2c_delay = simulate_class_I(params, args_delay)
+    t2c_liti = simulate_class_I(params, args_liti)
+    t2c_siti = simulate_class_I(params, args_siti)
+
+    res_dict = {
+        'sigma_perceptual_noise': sigma_perceptual_noise,
+        'alpha_actor': alpha_actor,
+        'alpha_critic': alpha_critic,
+        'eta_perceptual_drift': eta_perceptual_drift,
+        'delay_sensitive_update': delay_sensitive_update,
+        'problem': problem,
+        't2c_delay': t2c_delay,
+        't2c_liti': t2c_liti,
+        't2c_siti': t2c_siti
+    }
 
 if __name__ == "__main__":
 
-    psp_class_I()
-    psp_class_II()
+    # psp_class_I()
+    # psp_class_II()
+
+    # psp_class_I_multi()
+    psp_class_II_multi()
