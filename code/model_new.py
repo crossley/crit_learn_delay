@@ -197,9 +197,9 @@ def simulate_class_II(params, args):
 def psp_class_I_multi():
 
     # Generate values for each parameter
-    sigma_perceptual_noise = np.arange(1, 10, 1)
-    alpha_actor = np.arange(.01, .1, .01)
-    alpha_critic = np.arange(.01, .1, .01)
+    sigma_perceptual_noise = np.arange(0, 1, 0.1)
+    alpha_actor = np.arange(.01, .2, .01)
+    alpha_critic = np.arange(.01, .2, .01)
     eta_perceptual_drift = np.arange(0, 1, 0.1)
     delay_sensitive_update = np.array([True, False])
     problem = np.arange(1, 100, 1)
