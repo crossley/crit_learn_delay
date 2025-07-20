@@ -42,39 +42,47 @@ d1['psp_class'] = pd.Categorical(d1['psp_class'],
                                      'Short ITI Impaired',
                                      'Other'])
 
-d2['psp_class'] = 'Other'
+# d2['psp_class'] = 'Other'
+# 
+# # delay is greater than long iti and short iti
+# d2.loc[(d2['t2c_delay'] > d2['t2c_liti']) &
+#        (d2['t2c_delay'] > d2['t2c_siti']),
+#        'psp_class'] = 'Delay Impaired'
+# 
+# # long iti is greater than delay and short iti
+# d2.loc[(d2['t2c_liti'] > d2['t2c_delay']) &
+#        (d2['t2c_liti'] > d2['t2c_siti']),
+#        'psp_class'] = 'Long ITI Impaired'
+# 
+# # short iti is greater than delay and long iti
+# d2.loc[(d2['t2c_siti'] > d2['t2c_delay']) &
+#        (d2['t2c_siti'] > d2['t2c_liti']),
+#        'psp_class'] = 'Short ITI Impaired'
+# 
+# # make psp_class an ordered category
+# d2['psp_class'] = pd.Categorical(d2['psp_class'],
+#                                  ordered=True,
+#                                  categories=[
+#                                      'Delay Impaired',
+#                                      'Long ITI Impaired',
+#                                      'Short ITI Impaired',
+#                                      'Other'])
 
-# delay is greater than long iti and short iti
-d2.loc[(d2['t2c_delay'] > d2['t2c_liti']) &
-       (d2['t2c_delay'] > d2['t2c_siti']),
-       'psp_class'] = 'Delay Impaired'
-
-# long iti is greater than delay and short iti
-d2.loc[(d2['t2c_liti'] > d2['t2c_delay']) &
-       (d2['t2c_liti'] > d2['t2c_siti']),
-       'psp_class'] = 'Long ITI Impaired'
-
-# short iti is greater than delay and long iti
-d2.loc[(d2['t2c_siti'] > d2['t2c_delay']) &
-       (d2['t2c_siti'] > d2['t2c_liti']),
-       'psp_class'] = 'Short ITI Impaired'
-
-# make psp_class an ordered category
-d2['psp_class'] = pd.Categorical(d2['psp_class'],
-                                 ordered=True,
-                                 categories=[
-                                     'Delay Impaired',
-                                     'Long ITI Impaired',
-                                     'Short ITI Impaired',
-                                     'Other'])
-
-# TODO: investigate the 'Other' class
-# TODO: alpha_critic doesn't need to span [0, 1]
-# TODO: both alphas can span [0, 0.2]
+# TODO: perceptual noise might be too large. Should span [0, 1]?
+# TODO: alpha_critic doesn't need to span [0, 1] --- both alphas can span [0, 0.2]
 
 # TODO: decide about delay_sensitive_update and eta_perceptual_drift
-d1 = d1.loc[d1['delay_sensitive_update'] == True]
+d1 = d1.loc[d1['delay_sensitive_update'] == False]
 d1 = d1.loc[d1['eta_perceptual_drift'] == 0.0]
+
+# TODO: investigate the 'Other' class
+d1[d1['psp_class'] == 'Other']
+
+# TODO: Other class is apparently where the model did not learn
+#       For now, remove any row where all three t2c values are greater than thresh
+d1 = d1.loc[~((d1['t2c_delay'] < 170) & (d1['t2c_liti'] < 170) & (d1['t2c_siti'] < 170))]
+
+
 
 # NOTE: Figure style from first submission
 sns.set_palette("rocket", 4)
@@ -204,4 +212,5 @@ ax.set_zlim(d1['sigma_perceptual_noise'].min(),
 ax.view_init(elev=15, azim=45)
 
 plt.savefig('../figures/model_new_class_I.pdf')
-plt.close()
+plt.show()
+# plt.close()
