@@ -39,7 +39,7 @@ def simulate_class_I(params, args):
     t2c = 0
 
     # static params
-    dim = 25
+    dim = 100
     w_base = 0.5
     w_noise = 0.01
     vis_amp = 1.0
@@ -64,6 +64,8 @@ def simulate_class_I(params, args):
         else:
             cat = 2
 
+        vis_act = np.zeros(dim)
+
         # compute input activation via radial basis functions
         vis_dist_x = 0.0
         for i in range(0, dim):
@@ -84,12 +86,15 @@ def simulate_class_I(params, args):
         act_A = act_A if resp == 1.0 else 0.0
         act_B = act_B if resp == 2.0 else 0.0
 
+        vis_act_pre = vis_act.copy()
+        vis_act = np.zeros(dim)
+
         # perceptual drift may occur during the feedback delay
         # TODO: check with Greg for thoughts about this implementation
         if eta_perceptual_drift:
             vis_dist_x = 0.0
+            xx = x + eta_perceptual_drift * t_delay * np.random.normal(0, 1)
             for i in range(0, dim):
-                xx = eta_perceptual_drift * t_delay * np.random.normal(0, 1)
                 vis_dist_x = xx - i
                 vis_act[i] = vis_amp * math.exp(-(vis_dist_x**2) / sigma_perceptual_noise)
 

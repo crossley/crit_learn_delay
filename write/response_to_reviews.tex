@@ -61,7 +61,9 @@ that make different assumption can predict the observed
 pattern.
 
 \subsection{Author response}
-...
+We thank the reviewer for their careful reading of our
+manuscript and their thoughtful comments. We address each of
+the reviewer's points in turn below.
 
 \subsection{Reviewer comment}
 I am no expert in category learning, so cannot adequately
@@ -84,7 +86,8 @@ and modelling results and whether the space of possible
 models is sufficiently explored.
 
 \subsection{Author response}
-...
+We are grateful for the reviewer's positive assessment of
+our work and for their constructive suggestions.
 
 \subsection{Reviewer comment}
 1. Exploration of model space: When reading the description
@@ -116,7 +119,17 @@ possible model space or if there are other possible models
 that could potentially lead to different results is needed.
 
 \subsection{Author response}
-...
+We thank the reviewer for raising this important point. We
+have used this as an opportunity more systematically explore
+the classes of possible models.  In particular, we explore
+two classes of models: one class that assumes a criterion is
+learned and one class that assumes SR learning with no
+criterion.  Within the criterial-learning class we explore
+three different binary assumptions: perceptual drift (yes or
+no), criterial drift (yes or no), and delay-sensitive
+updating (yes or no).  Within the SR learning class there is
+no criterion to drift, but we do explore perceptual drift
+and delay-sensitive feedback (yes or no on each). 
 
 \subsubsection{Reviewer comment}
 2. Simulation results figures: There were some aspects of
@@ -138,7 +151,9 @@ is no corresponding bar in panel A.
 3A. Why?
 
 \subsection{Author response}
-...
+With the new approach to model exploration, we have heavily 
+revised the simulation results figures.  We hope that the
+new figures are clearer and address the reviewer's concerns.
 
 \subsubsection{Reviewer comment}
 3. Calling the simulation Experiment 1: I found it extremely
@@ -151,7 +166,8 @@ renaming this section to something clearer. For example
 Models".
 
 \subsection{Author response}
-...
+We thank the reviewer for this suggestion. We have made this
+change in the revision.
 
 \subsubsection{Reviewer comment}
 4. Outliers in Exp. 2:
@@ -172,7 +188,12 @@ finding within your general experience running such
 experiments.
 
 \subsection{Author response}
-...
+We thank the reviewer for the opportunity to clarify our
+method. Outliers were identified on the basis of the Gaussian
+mixture model fit to the trials-to-criterion data. We now
+say ``Participants that were deemed to most likely belong in
+the low-performance Gaussian by this analysis were excluded
+from further analysis.''
 
 \subsubsection{Reviewer comment}
 Minor points:
@@ -181,7 +202,7 @@ Minor points:
 and equation are inconsistent.
 
 - The description regarding the randomisation of Experiment
-2 on page 12 (paragraph before "Procedure") seems to be
+2 on page 12 (paragraph before ``Procedure'') seems to be
 inconsistent with Figure 4. Is the dimension picked at
 random for each trial or always the same for certain problem
 numbers (as implied by Figure 4)?
@@ -190,7 +211,8 @@ numbers (as implied by Figure 4)?
 shows 7 problems.
 
 \subsection{Author response}
-...
+We thank the reviewer for catchign these points. All are
+corrected or revised for greater clarity in the revision.
 
 \section{Reviewer 2}
 
@@ -203,7 +225,10 @@ The action editor retains full authority to determine the
 decision outcome for this manuscript.
 
 \subsection{Author response}
-...
+We thank the editor in chief for acting as a reviewer and for
+their careful reading of our manuscript and their thoughtful
+comments. We address each of the editor's points in turn
+below.
 
 \subsubsection{Reviewer comment}
 This manuscript reports a sophisticated approach to an
@@ -211,7 +236,7 @@ important problem. I especially like the use of mathematical
 models.
 
 \subsection{Author response}
-...
+We are glad the reviewer viewed our approach favourably.
 
 \subsubsection{Reviewer comment}
 I was concerned that the models seem to have multiple
@@ -225,16 +250,29 @@ as a relevant factor. Some additional justification and/or
 adjustments to the tested set of models is needed.
 
 \subsection{Author response}
-...
+We thank the reviewer for raising this important point. In
+the revision we more systematically explore the classes of
+possible models.  In particular, we explore two classes of
+models: one class that assumes a criterion is learned and
+one class that assumes SR learning with no criterion.
+Within the criterial-learning class we explore three
+different binary assumptions: perceptual drift (yes or no),
+criterial drift (yes or no), and delay-sensitive updating
+(yes or no).  Within the SR learning class there is no
+criterion to drift, but we do explore perceptual drift and
+delay-sensitive feedback (yes or no on each). The motivation
+for these models and parameter choices is now more fully
+explained in the revision.
 
 \subsubsection{Reviewer comment}
 Despite these concerns about which models are the most
 relevant to compare, I was impressed by the simulation
-strategy and the focus on finding “signature” predictions
+strategy and the focus on finding ``signature'' predictions
 that distinguish different pairs of models.
 
 \subsection{Author response}
-...
+We are glad the reviewer viewed our simulation strategy
+favourably.
 
 \subsubsection{Reviewer comment}
 I think it makes more sense to have a prediction simulation
@@ -242,7 +280,8 @@ section and Experiments 1 and 2 rather than to consider the
 simulation the first experiment.
 
 \subsection{Author response}
-...
+We thank the reviewer for this suggestion. We have made this
+change in the revision.
 
 \subsubsection{Reviewer comment}
 The data in Figure 6 can likely be fit much more closely by
@@ -250,7 +289,19 @@ an ExGaussian distribution than either the 1 or 2 component
 Gaussian mixtures that are shown.
 
 \subsection{Author response}
-...
+We thank the reviewer for this suggestion. We now estimate
+both a single-component truncated ExGaussian and a
+two-component truncated ExGaussian mixture via MLE with
+proper normalization on the tasks bounded support $[9,
+512]$, and compared them via AIC, BIC, and a parametric
+bootstrap likelihood-ratio test (LRT).  The results from
+moving from the  mixture of Gaussians used in our orginal
+submission to the truncated ExGaussian mixture used in the
+revision does not change the qualitative pattern of our
+results in any way. However, we agree that the ExGaussian
+and ExGaussian mixture better capture the skewed and bounded
+distribution of our trials-to-criterion data so we have
+adopted it in the revision. 
 
 \subsubsection{Reviewer comment}
 Replication the criterial learning results from the
@@ -258,7 +309,12 @@ currently-labeled Experiment 2 seems like a good idea given
 the fairly low sample sizes per condition.
 
 \subsection{Author response}
-...
+We agree with the reviewer that a replication would be
+valuable but feel the data and models currently presented
+represent a suitable contribution to the field as is. For
+this reason, paired with the time and resource costs of
+conducting a replication, we have not pursued this in the
+revision.
 
 \subsubsection{Reviewer comment}
 Did stimuli remain on the screen across the feedback delay?
@@ -268,11 +324,23 @@ would eliminate or dramatically reduce the negative effect
 of feedback delay. If so, is that consistent with the
 conclusions? That is, would the models that predict a
 deleterious effect of feedback delay also predict that it
-should be eliminated with “reminder” stimuli at the time of
+should be eliminated with ``reminder'' stimuli at the time of
 feedback?
 
 \subsection{Author response}
-...
+We thank the reviewer for the opportunity to clarify the
+design of our experiment. As shown in Fig. 5 and in Fig. 8
+the stimulus was presented up until a response was made. At
+this time the stimulus was removed and replaced by a noise
+mask until feedback was delivered. We also thank the
+reviewer for raising the interesting question of whether the
+negative effect of feedback delay would be eliminated if the
+stimulus were to reappear at the time of feedback. We agree
+that this would be an interesting manipulation to explore in
+future work. However, we believe that their are many
+interesting followup questions that could be explored in
+future work and that the current manuscript represents a
+suitable contribution to the field as is.
 
 \subsubsection{Reviewer comment}
 For the currently-labeled Experiment 3, reporting
@@ -280,7 +348,7 @@ fail-to-reject results for t-tests is not a valid method for
 establishing that feedback delay has no effect. This is
 especially a concern given the low participant count per
 condition and the fact that empirical effects go in the
-“right” direction (lower performance for delayed feedback).
+``right'' direction (lower performance for delayed feedback).
 A different inferential approach is needed, and one
 possibility is reporting confidence intervals over effect
 size. Your conclusions rely on demonstrating that you can
@@ -293,7 +361,29 @@ experiment does not establish that the effects of feedback
 delay are specific to a criterion learning task.
 
 \subsection{Author response}
-...
+TODO: Greg, I'd appreciate your take on this comment.
+
+I ran an equivalence test, and as the reviewer suspected,
+the data are inconclusive. I also have Experiment 2 data
+from an earlier semester. It shows the same pattern (though
+with fewer participants and more noise), but I left it out
+to avoid mixing cohorts. Just out of curiosity, I combined
+it with the current data and reran the analysis, but the
+results remain inconclusive. So I don’t think we can make a
+strong claim that Exp 2 shows no effect of delay --- at
+least not with this method.
+
+I also tried testing whether the delay effect is larger in
+Exp 1 than Exp 2 (a difference-of-differences approach), but
+that too was inconclusive.
+
+One possible way to address this is to add data from another
+archived experiment, where we examined criterion learning
+with a numerical Stroop dual task. Those data (n=30) showed
+no effect of the dual task. Including this might add some
+empirical value.
+
+Thoughts?
 
 \subsubsection{Reviewer comment}
 I recommend running a bigger replication study that combines
@@ -302,15 +392,19 @@ delay impairs performance only for the criterion learning
 task). The replication study should be preregistered with a
 sample size justification based on the interaction effect
 defined by the across-experiment comparison in the current
-data. Adding a “stimulus reminder at feedback” condition to
-this new study might be helpful in clarifying the mechanisms
-producing the delay effect.
+data. Adding a ``stimulus reminder at feedback'' condition
+to this new study might be helpful in clarifying the
+mechanisms producing the delay effect.
 
 Signed,
 Jeff Starns
 
 \subsection{Author response}
-...
+We thank the reviewer for their careful reading of our
+manuscript and their thoughtful comments overall. Here, we
+agree that a replication / extension study would be valuable
+but feel the paper as is represents a suitable contribution
+to the field.
 
 \section*{Action Editor}
 
@@ -320,7 +414,8 @@ notes the need for investigating how criterions are learned
 in decision models.
 
 \subsection{Author response}
-...
+We thank the reviewer for their positive assessment of our
+work.
 
 \subsubsection{Reviewer comment}
 The final paragraph of the introduction summarizes the
@@ -329,7 +424,11 @@ given that no information about the experiments are
 presented in the abstract.
 
 \subsection{Author response}
-...
+We thank the reviewer for this suggestion. We have added
+more detail about the experiments to the abstract, but have
+elected to retain the summary of the experiments in the
+introduction as we feel it helps orient the reader to the
+structure of the paper.
 
 \subsubsection{Reviewer comment}
 Equation 1 needs some explanation, as this implies that the
@@ -338,16 +437,29 @@ other words, Rn is not an outcome of some time-extended
 cognitive process. Am I misunderstanding equation 1?
 
 \subsection{Author response}
-...
+We thank the reviewer for raining this point and for the
+opportunity to clarify. In essence the reviewer is correct.
+Equation 1 indicates that the response is made immediately
+upon stimulus presentation. We therefore are not explicitly
+modelling the time-extended cognitive processes that govern
+evidence accumulation and the corresponding response time.
+We now say this explicitly in the revision.
 
 \subsubsection{Reviewer comment}
 What was the reason behind the choice to have equation 2
-only be sensitive to negative feedback? How is "optimal"
+only be sensitive to negative feedback? How is ``optimal''
 defined in the current case, given that response time does
 not factor in the update rule?
 
 \subsection{Author response}
-...
+We thank the reviewer for the opportunity to clarify this
+point. The rationale behind the choice to have equation 2
+only be sensitive to negative feedback is that if the
+response is correct, then the observer has effectively
+gained zero information about how their criterion should be
+modified. Also, in this case otimal refers to the true
+criterion value that the observer is trying to learn. We now
+say this explicitly in the revision.
 
 \subsubsection{Reviewer comment}
 The use of parameter space partitioning is sensible given
@@ -358,7 +470,8 @@ implemented (i.e., using MCMC). This should be mentioned
 explicitly to avoid confusion.
 
 \subsection{Author response}
-...
+We thank the reviewer for raising this important point. We
+have revised the manuscript accordingly.
 
 \subsubsection{Reviewer comment}
 The three-dimensional plots in figures 1B, 2B, and 3B do not
@@ -368,7 +481,9 @@ would be more appropriate as there is no additional
 information by using 3D plots.
 
 \subsection{Author response}
-...
+We thank the reviewer for this suggestion. We have heavily
+revised the simulation results figures. We hope that the new
+figures are clearer and address the reviewer's concerns.
 
 \subsubsection{Reviewer comment}
 Although not a focus in this manuscript, I wondered whether
@@ -377,7 +492,10 @@ patterns such as complete RT distributions and
 speed-accuracy tradeoff functions.
 
 \subsection{Author response}
-...
+We agree that these are interesting questions. The models in
+their current form do not account for RT distributions or
+speed-accuracy tradeoff functions. However, we believe that
+this could be a fruitful avenue for future work. 
 
 \subsubsection{Reviewer comment}
 The experiments are numbered 2 and 3, instead of 1 and 2.
@@ -388,7 +506,11 @@ been deleted from this manuscript, but the model simulations
 and discussion still refer to it.
 
 \subsection{Author response}
-...
+We thank the reviewer for catching this confusion. No study
+was deleted from the manuscript. Rather, whether or not the
+computational modelling section should be considered an
+``experiment'' was a point of oscillation when writing. We
+hope our revision clarifies this point.
 
 \subsubsection{Reviewer comment}
 In figure 6, it is clear that the participants form two
@@ -399,7 +521,11 @@ frequency histogram to exclude participants, more
 appropriate distributions, such as Poisson should be used.
 
 \subsection{Author response}
-...
+We thank the reviewer for this suggestion. We now estimate
+both a single-component truncated ExGaussian and a
+two-component truncated ExGaussian mixture via MLE with
+proper normalization on the tasks bounded support $[9,
+512]$.
 
 \subsubsection{Reviewer comment}
 Given the experimental results, what is the added benefit of
@@ -412,6 +538,18 @@ that any updating rule should be sensitive to feedback
 delay. The models do not go beyond this.
 
 \subsection{Author response}
-...
+Thank you for raising this but we respectfully disagree that
+our models do not provide a detailed understanding of
+mechanism. To the contrary, our models all offer detailed
+mechanistic accounts for how criterial learning may occur in
+cognition. They articulate that delay effects may arise from
+any of several distinct cognitive mechanisms including the
+decay of a memory representation over time, the discounting
+of learning magnitude by feedback delay of this
+representation, or the discounting of learning in a
+reinforcement-learning stimulus-response framework. In this
+way, the models contribute the most important piece: they
+pin down the process-level mechanism consistent with the
+experiments.
 
 \end{document}
