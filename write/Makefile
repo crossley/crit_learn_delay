@@ -17,16 +17,16 @@ all:
 	biber main_revision
 	pdflatex main_revision.tex
 	pdflatex main_revision.tex
-	# latexdiff --flatten \
-	#   --exclude-textcmd=section \
-	#   --exclude-textcmd=subsection \
-	#   --exclude-textcmd=subsubsection \
-	#   main.tex main_revision.tex > main_diff.tex
-	# pdflatex main_diff.tex
-	# pdflatex main_diff.tex
-	# biber main_diff
-	# pdflatex main_diff.tex
-	# pdflatex main_diff.tex
+	latexdiff --flatten \
+	  --exclude-textcmd=section \
+	  --exclude-textcmd=subsection \
+	  --exclude-textcmd=subsubsection \
+	  main.tex main_revision.tex > main_diff.tex
+	pdflatex main_diff.tex
+	pdflatex main_diff.tex
+	biber main_diff
+	pdflatex main_diff.tex
+	pdflatex main_diff.tex
 
 # Define clean rule
 clean:

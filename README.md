@@ -3,8 +3,8 @@
 This repository contains the code, data, and writing for the
 paper:
 
-**Criterial Learning and Feedback Delay: Insights from
-Computational Models and Behavioral Experiments**  
+**Is there a Criterion in Criterial Learning?  Insights from
+Studying Feedback Delays**
 
 **Authors:**  
 Matthew J. Crossley
