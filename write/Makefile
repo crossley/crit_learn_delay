@@ -7,11 +7,11 @@ all:
 	# biber main
 	# pdflatex main.tex
 	# pdflatex main.tex
-	# pdflatex response_to_reviews.tex
-	# pdflatex response_to_reviews.tex
-	# biber response_to_reviews
-	# pdflatex response_to_reviews.tex
-	# pdflatex response_to_reviews.tex
+	pdflatex response_to_reviews.tex
+	pdflatex response_to_reviews.tex
+	biber response_to_reviews
+	pdflatex response_to_reviews.tex
+	pdflatex response_to_reviews.tex
 	pdflatex main_revision.tex
 	pdflatex main_revision.tex
 	biber main_revision
