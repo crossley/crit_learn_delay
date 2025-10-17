@@ -422,18 +422,25 @@ def plot_exg_mixture(model, X, bins=30, title=None, ax=None):
             density=True,
             alpha=0.25,
             edgecolor="none",
-            label="Data (density)")
+            color="gray",
+            label="Human data")
 
     # lines
-    colors = ["tab:blue", "tab:orange", "tab:green", "tab:red"]
+
+    # use rocket colors 
+    from matplotlib.cm import get_cmap
+    cmap = get_cmap("rocket")
+    n_colors = 6
+    colors = [cmap(0.2), cmap(0.5)]
+
     for k, ck in enumerate(comps):
         ax.plot(xgrid,
                 ck,
                 ls="--",
                 lw=2,
                 color=colors[k % len(colors)],
-                label=f"Component {k+1} (weighted)")
-    ax.plot(xgrid, pdf_total, lw=2, label="Mixture total")
+                label=f"Component {k+1}")
+    # ax.plot(xgrid, pdf_total, lw=2, label="Mixture total")
 
     # rug colored by hard labels (ordered by mu for consistency)
     order = np.argsort(mu)
@@ -443,15 +450,14 @@ def plot_exg_mixture(model, X, bins=30, title=None, ax=None):
         xk = X[labels == k]
         if xk.size:
             ax.scatter(xk,
-                       np.full_like(xk, -0.002 - 0.001 * k),
+                       np.full_like(xk, -0.002 - 0.001 * 1),
                        s=10,
                        alpha=0.9,
                        color=colors[k % len(colors)],
-                       label=(f"Rug (comp {k+1})"
-                              if k == 0 else None))  # avoid dup legend
+                       label="")
 
-    ax.set_xlabel("x")
-    ax.set_ylabel("Density")
+    ax.set_xlabel("Trials to criterion", fontsize=12)
+    ax.set_ylabel("Density", fontsize=12)
     if title:
         ax.set_title(title)
     yl = ax.get_ylim()
@@ -471,7 +477,7 @@ def plot_exg_compare(exg_single, exg_mix, X, bins=30):
     plot_exg_mixture(exg_mix,
                      X,
                      bins=bins,
-                     title=f"Mixture ({exg_mix.n_components} comps)",
+                     title="Mixture Model",
                      ax=axes[1])
     axes[0].set_ylabel("Density")
     plt.tight_layout()

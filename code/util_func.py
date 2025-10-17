@@ -170,16 +170,6 @@ def load_data_exp_2():
 
     d = pd.concat([pd.read_csv(f) for f in f_names])
 
-    f_names = [
-        os.path.join('../data/bin_data_v1', f)
-        for f in os.listdir('../data/bin_data_v1') if f.endswith('.csv')
-    ]
-
-    d1 = pd.concat([pd.read_csv(f) for f in f_names])
-    d1['sub_num'] = d1['sub_num'] + 100
-
-    d = pd.concat([d, d1], ignore_index=True)
-
     d.rename(
         {
             'sub_num': 'sub',
@@ -831,20 +821,20 @@ def report_exp_1():
     print("ANOVA on trials to criterion:")
     print(res)
 
-    res = pg.pairwise_tests(data=ddd, dv='t2c', between='cnd', parametric=True)
+    res = pg.pairwise_tests(data=ddd, dv='t2c', between='cnd', parametric=True, effsize='cohen')
     print()
     print("Pairwise comparisons on trials to criterion:")
-    print(res[['A', 'B', 'T', 'dof', 'p-unc']])
+    print(res[['A', 'B', 'T', 'dof', 'p-unc', 'cohen']])
 
     res = pg.anova(data=ddd, dv='nps', between='cnd', ss_type=3, effsize='np2')
     print()
     print("ANOVA on number of problems solved:")
     print(res)
 
-    res = pg.pairwise_tests(data=ddd, dv='nps', between='cnd', parametric=True)
+    res = pg.pairwise_tests(data=ddd, dv='nps', between='cnd', parametric=True, effsize='cohen')
     print()
     print("Pairwise comparisons on number of problems solved:")
-    print(res[['A', 'B', 'T', 'dof', 'p-unc']])
+    print(res[['A', 'B', 'T', 'dof', 'p-unc', 'cohen']])
 
 
 def report_exp_2():
@@ -875,22 +865,22 @@ def report_exp_2():
                              n_init=16).fit(X)
 
     # Bootstrap LRT p-value (use a small n_boot while iterating; increase at the end)
-    # D_obs, p_boot, D_boot, exg2_refit = bootstrap_lrt_pvalue(
-    #     X,
-    #     null_model=exg1,
-    #     alt_components=2,
-    #     n_boot=100,
-    #     n_init_null_boot=2,
-    #     n_init_alt_boot=4,
-    #     random_state=123,
-    #     verbose=True,
-    # )
+    D_obs, p_boot, D_boot, exg2_refit = bootstrap_lrt_pvalue(
+        X,
+        null_model=exg1,
+        alt_components=2,
+        n_boot=100,
+        n_init_null_boot=2,
+        n_init_alt_boot=4,
+        random_state=456,
+        verbose=True,
+    )
 
-    # print()
+    print()
     # print("--- ExGaussian mixture model fit ---")
-    # print(f"AIC(1)={exg1.aic(X):.2f}  AIC(2)={exg2.aic(X):.2f}")
-    # print(f"BIC(1)={exg1.bic(X):.2f}  BIC(2)={exg2.bic(X):.2f}")
-    # print(f"LRT D_obs = {D_obs:.2f},  p_boot ≈ {p_boot:.4f}")
+    print(f"AIC(1)={exg1.aic(X):.2f}  AIC(2)={exg2.aic(X):.2f}")
+    print(f"BIC(1)={exg1.bic(X):.2f}  BIC(2)={exg2.bic(X):.2f}")
+    print(f"LRT D_obs = {D_obs:.2f},  p_boot ≈ {p_boot:.4f}")
 
     R_raw = exg2.predict_proba(X)  # shape (N, 2) in the model's native order
     order = np.argsort(
@@ -917,7 +907,7 @@ def report_exp_2():
     # pred = gmm_2.predict(X)
     # dd['pred'] = pred
 
-    # Mixture model doesn't support 2 components
+    # NOTE: No obivous outliers so keep all data
     ddd = dd.copy()
     # ddd = dd.loc[dd['pred'] == 0].copy()
 
@@ -965,34 +955,25 @@ def report_exp_2():
     plt.savefig('../figures/fig_exp_2_t2c.png')
     plt.close()
 
-    res = pg.anova(data=ddd, dv='t2c', between='cnd', ss_type=3, effsize='np2')
-    print()
-    print("ANOVA on trials to criterion:")
-    print(res)
+    # res = pg.anova(data=ddd, dv='t2c', between='cnd', ss_type=3, effsize='np2')
+    # print()
+    # print("ANOVA on trials to criterion:")
+    # print(res)
 
-    res = pg.pairwise_tests(data=ddd, dv='t2c', between='cnd', parametric=True)
+    res = pg.pairwise_tests(data=ddd, dv='t2c', between='cnd', parametric=True, effsize='cohen')
     print()
     print("Pairwise comparisons on trials to criterion:")
-    print(res[['A', 'B', 'T', 'dof', 'p-unc', 'BF10']])
+    print(res[['A', 'B', 'T', 'dof', 'p-unc', 'cohen']])
 
-    res = pg.anova(data=ddd, dv='nps', between='cnd', ss_type=3, effsize='np2')
-    print()
-    print("ANOVA on number of problems solved:")
-    print(res)
+    # res = pg.anova(data=ddd, dv='nps', between='cnd', ss_type=3, effsize='np2')
+    # print()
+    # print("ANOVA on number of problems solved:")
+    # print(res)
 
-    res = pg.pairwise_tests(data=ddd, dv='nps', between='cnd', parametric=True)
+    res = pg.pairwise_tests(data=ddd, dv='nps', between='cnd', parametric=True, effsize='cohen')
     print()
     print("Pairwise comparisons on number of problems solved:")
-    print(res[['A', 'B', 'T', 'dof', 'p-unc', 'BF10']])
-
-    # ttost for delayed vs long ITI
-    for bnd in [20, 30, 40]:
-        res = pg.tost(x=ddd.loc[ddd['cnd'] == 'Delay', 't2c'],
-                      y=ddd.loc[ddd['cnd'] == 'Long ITI', 't2c'],
-                      bound=bnd,
-                      paired=False,
-                      correction=True)
-        print(res)
+    print(res[['A', 'B', 'T', 'dof', 'p-unc', 'cohen']])
 
 
 def report_exp_1_vs_2(dd):
