@@ -456,10 +456,10 @@ def plot_exg_mixture(model, X, bins=30, title=None, ax=None):
                        color=colors[k % len(colors)],
                        label="")
 
-    ax.set_xlabel("Trials to criterion", fontsize=12)
-    ax.set_ylabel("Density", fontsize=12)
+    ax.set_xlabel("Trials to criterion", fontsize=14)
+    ax.set_ylabel("Density", fontsize=14)
     if title:
-        ax.set_title(title)
+        ax.set_title(title, fontsize=14)
     yl = ax.get_ylim()
     ax.set_ylim(min(yl[0], -0.01), yl[1])
     ax.legend(loc="best")
