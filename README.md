@@ -30,4 +30,4 @@ F. Gregory Ashby
   `inspect_results_behave.py`
 
 - To analyze the computational model results, run:  
-  `inspect_results_models.py`
+  `inspect_results_model.py`
