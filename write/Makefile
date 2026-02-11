@@ -27,8 +27,13 @@ all:
 	# biber main_diff
 	# pdflatex main_diff.tex
 	# pdflatex main_diff.tex
-	pdflatex cover_letter_revision.tex
-	pdflatex cover_letter_revision.tex
+	# pdflatex cover_letter_revision.tex
+	# pdflatex cover_letter_revision.tex
+	pdflatex main_revision_2.tex
+	pdflatex main_revision_2.tex
+	biber main_revision_2
+	pdflatex main_revision_2.tex
+	pdflatex main_revision_2.tex
 
 # Define clean rule
 clean:

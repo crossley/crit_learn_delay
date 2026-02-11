@@ -3,8 +3,8 @@
 This repository contains the code, data, and writing for the
 paper:
 
-**Is there a Criterion in Criterial Learning?  Insights from
-Studying Feedback Delays**
+**Criterial Learning and Feedback Delay: Insights from
+Computational Models and Behavioral Experiments**
 
 **Authors:**  
 Matthew J. Crossley
@@ -17,8 +17,9 @@ F. Gregory Ashby
   Contains the raw data from the experiments.
 
 - **output/**  
-  Contains the output from the parameter space partitioning
-  analysis.
+  This is the directory where the output from the parameter
+  space partitioning analysis is written. These files can be
+  too large for GitHub, so they are not included in the repository.
 
 - **code/**  
   Contains the code for the computational models and for
